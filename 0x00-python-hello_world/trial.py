@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+first_name = 'Glory'
+last_name = 'Valery'
+
+sentence = f'My name is {first_name.upper()} {last_name.upper()}'
+
+print(sentence)

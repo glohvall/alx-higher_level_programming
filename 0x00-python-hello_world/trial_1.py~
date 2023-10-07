@@ -1,0 +1,8 @@
+#!/usr/bin/python3
+
+person = {'name': 'Glory', 'age': 24}
+
+sentence = 'My name is {} and I am {} years old'.format(person['name'],
+                                                        person['age'])
+
+print(sentence)
