@@ -1,72 +1,77 @@
-=============================
-The ``7-base_geometry`` module
-=============================
+ The ''7-base_geometry module''
+===============================
 
-Using ``BaseGeometry``
----------------------
+ Tests the ''BaseGeometry Class''
+-----------------------------------
 
-Import the class:
+>>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
 
-    >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-
-Now test it:
+Test cases:
 
     >>> bg = BaseGeometry()
+
+    >>> print(bg.area())
+    Traceback (most recent call last):
+    Exception: area() is not implemented
 
     >>> bg.integer_validator("my_int", 12)
 
     >>> bg.integer_validator("width", 89)
 
-    >>> bg.area()
-        Traceback (most recent call last):
-	    Exception: area() is not implemented
+    >>> bg.integer_validator("", 28)
+
+    >>> bg.integer_validator("", 0)
+    Traceback (most recent call last):
+    ValueError:  must be greater than 0
 
     >>> bg.integer_validator("name", "John")
-        Traceback (most recent call last):
-	    TypeError: name must be an integer
+    Traceback (most recent call last):
+    TypeError: name must be an integer
 
     >>> bg.integer_validator("age", 0)
-        Traceback (most recent call last):
-	    ValueError: age must be greater than 0
+    Traceback (most recent call last):
+    ValueError: age must be greater than 0
 
-    >>> bg.integer_validator("distance", -4)
-        Traceback (most recent call last):
-	    ValueError: distance must be greater than 0
+    >>> bg.integer_validator(t, "John")
+    Traceback (most recent call last):
+    NameError: name 't' is not defined
 
-    >>> bg.integer_validator("average", 7.8)
-        Traceback (most recent call last):
-	    TypeError: average must be an integer
-
-    >>> bg.integer_validator("average")
-        Traceback (most recent call last):
-	    TypeError: integer_validator() missing 1 required positional argument: 'value'
+    >>> bg.integer_validator(8, 8)
 
     >>> bg.integer_validator()
-        Traceback (most recent call last):
-	    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
 
-    >>> bg.integer_validator("NaN", float('nan'))
-        Traceback (most recent call last):
-	    TypeError: NaN must be an integer
+    >>> bg.integer_validator("distance", -4)
+    Traceback (most recent call last):
+    ValueError: distance must be greater than 0
 
-    >>> bg.integer_validator("Big", 10000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000)
+    >>> bg.integer_validator("team")
+    Traceback (most recent call last):
+    TypeError: integer_validator() missing 1 required positional argument: 'value'
 
-    >>> bg.integer_validator("age", (4,))
-        Traceback (most recent call last):
-	    TypeError: age must be an integer
+    >>> bg.integer_validator("team", 6, 6)
+    Traceback (most recent call last):
+    TypeError: integer_validator() takes 3 positional arguments but 4 were given
 
-    >>> bg.integer_validator("age", [3])
-        Traceback (most recent call last):
-	    TypeError: age must be an integer
+    >>> bg.integer_validator("team", 6.5)
+    Traceback (most recent call last):
+    TypeError: team must be an integer
 
-    >>> bg.integer_validator("age", True)
-        Traceback (most recent call last):
-	    TypeError: age must be an integer
+    >>> bg.integer_validator("santiago", (1, 2))
+    Traceback (most recent call last):
+    TypeError: santiago must be an integer
 
-    >>> bg.integer_validator("age", {3, 4})
-        Traceback (most recent call last):
-	    TypeError: age must be an integer
+    >>> bg.integer_validator("santiago", [1, 2])
+    Traceback (most recent call last):
+    TypeError: santiago must be an integer
 
-    >>> bg.integer_validator("age", None)
-        Traceback (most recent call last):
-	    TypeError: age must be an integer
+    >>> bg.area(1)
+    Traceback (most recent call last):
+    TypeError: area() takes 1 positional argument but 2 were given
+
+    >>> c = __import__("7-base_geometry").BaseGeometry.__doc__
+    >>> len(c) > 1
+    True
+
+    >>> bg.integer_validator("       ", 1991)
